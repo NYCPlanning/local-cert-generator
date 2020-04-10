@@ -7,7 +7,7 @@ A set of scripts to quickly generate a HTTPS certificate for your local developm
 1. Clone this repository and `cd` into it:
 
 ```
-git clone https://github.com/dakshshah96/local-cert-generator.git
+git clone git@github.com:NYCPlanning/local-cert-generator.git
 cd local-cert-generator
 ```
 2. In this next step, you will run a script to create a root certificate, and it will ask you a series of questions. There is one crucial question that must be answered for using planninglabs subdomains locally:
@@ -20,11 +20,28 @@ Run this command with this caveat in mind:
 sh createRootCA.sh
 ```
 
+When prompted for the password, you can choose your own password, but make sure to write it down for adding/modifying the cert later.
+
+For all questions except for Common Name, you can enter a period `.` to leave them blank. 
+
+The command will output the rootCA file(s) into the local-cert-generator folder.
+
 3. Add the root certificate we just generated (rootCA.pem) to your list of trusted certificates. This step depends on the operating system you're running:
 
-    - **macOS**: Open Keychain Access and import the root certificate to your System keychain. Then mark the certificate as trusted.
+    - **macOS**: Open Keychain Access and import the root certificate to your System keychain. 
+      - Go to File > "Import Item"
+      - After importing, you should see someting like this
+      
+      ![image](https://user-images.githubusercontent.com/3311663/78997227-2182bd00-7b14-11ea-8a9c-4012d3d4eb92.png)
+
+    - Then mark the certificate as trusted.
+      -  Double click the certificate, expand "trust", then select "Always Trust" for the "When using this certificate" prompt.
+
+      ![image](https://user-images.githubusercontent.com/3311663/78997488-a968c700-7b14-11ea-8a39-a0c00d1e1722.png)
+
 
     ![Trust root certificate](https://cdn-images-1.medium.com/max/1600/1*NWwMb0yV9ClHDj87Kug9Ng.png)
+    
 
     - **Linux**: Depending on your Linux distribution, you can use `trust`, `update-ca-certificates` or another command to mark the generated root certificate as trusted.
 
