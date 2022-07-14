@@ -70,3 +70,5 @@ var app = express()
 
 var server = https.createServer(certOptions, app).listen(443)
 ```
+
+6. Make a copy of the subfolder that contains  `server.key` and `server.crt`, and place it under the client folder (keep the name used under the server folder). 
